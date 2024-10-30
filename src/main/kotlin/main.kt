@@ -8,6 +8,7 @@ fun main() {
         val parallelGraph = ParallelGraph(vertexCount)
         val dijkstraParallel = DijkstraParallel()
         val dijkstraClassic = DijkstraClassic ()
+        val dijkstraThreads = ParallelDijkstraThreads ()
 
         for (i in 0 until vertexCount - 1) {
             val weight = (1..10).random()
@@ -26,5 +27,11 @@ fun main() {
         }
 
         println("Parallel Dijkstra time: $parallelTime ms")
+
+        val parallelThreadsTime = measureTimeMillis {
+            dijkstraThreads.parallelDijkstraThreads(0, graph)
+        }
+
+        println("Parallel Dijkstra (Threads) time: $parallelThreadsTime ms")
     }
 }
